@@ -250,3 +250,359 @@ button {
   font-size: 18px;
   letter-spacing: 0.01em;
 }
+
+/* ---------------------------------------------------------------------
+   Social feed
+   Cards, composer, and suggested traders on /home.
+   --------------------------------------------------------------------- */
+
+.feed-section {
+  margin-top: 40px;
+  padding: 28px 24px;
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  border: 1px solid var(--border-soft);
+}
+
+.feed-section-header {
+  margin-bottom: 24px;
+}
+
+.feed-section-title {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.feed-section-lead {
+  color: var(--text-2);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.feed-composer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.feed-composer-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-2);
+}
+
+.feed-composer-input {
+  width: 100%;
+  resize: vertical;
+  min-height: 96px;
+  padding: 14px 16px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text-1);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.feed-composer-input:focus {
+  outline: none;
+  border-color: var(--violet-soft);
+  box-shadow: 0 0 0 3px var(--violet-glow);
+}
+
+.feed-composer-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.feed-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.feed-card {
+  padding: 18px 16px;
+  border-radius: var(--radius-md);
+  background: var(--surface-2);
+  border: 1px solid var(--border-soft);
+}
+
+.feed-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.feed-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  font-size: 14px;
+  color: #fff;
+  background: linear-gradient(135deg, var(--violet), var(--ember));
+}
+
+.feed-author {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.feed-meta {
+  color: var(--text-3);
+  font-size: 12px;
+}
+
+.feed-body {
+  color: var(--text-1);
+  font-size: 15px;
+  line-height: 1.65;
+  white-space: pre-wrap;
+}
+
+.feed-status {
+  color: var(--text-2);
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+
+.feed-error {
+  color: var(--rose);
+  font-size: 13px;
+  margin-top: 8px;
+}
+
+.feed-suggested {
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border-soft);
+}
+
+.feed-suggested-title {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.feed-suggested-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.feed-suggested-item {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 16px;
+  border-radius: var(--radius-md);
+  background: var(--surface-2);
+  border: 1px solid var(--border-soft);
+}
+
+.feed-suggested-bio {
+  color: var(--text-2);
+  font-size: 13px;
+  line-height: 1.5;
+  margin-top: 4px;
+}
+
+.follow-button-wrap {
+  flex-shrink: 0;
+}
+
+.app-nav {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.app-nav a {
+  color: var(--text-2);
+  font-size: 14px;
+  font-weight: 500;
+  transition: color 0.15s ease;
+}
+
+.app-nav a:hover {
+  color: var(--text-1);
+}
+
+.feed-author-link,
+.feed-avatar-link {
+  color: inherit;
+}
+
+.feed-author-link:hover .feed-author {
+  color: var(--violet);
+}
+
+.feed-avatar-link:hover .feed-avatar {
+  filter: brightness(1.08);
+}
+
+.profile-section {
+  margin-top: 8px;
+}
+
+.profile-back-link {
+  display: inline-block;
+  color: var(--text-2);
+  font-size: 14px;
+  margin-bottom: 24px;
+}
+
+.profile-back-link:hover {
+  color: var(--text-1);
+}
+
+.profile-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.profile-header-main {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.profile-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  font-size: 22px;
+  color: #fff;
+  background: linear-gradient(135deg, var(--violet), var(--ember));
+  flex-shrink: 0;
+}
+
+.profile-title {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.profile-wallet {
+  color: var(--text-3);
+  font-size: 13px;
+  margin-top: 4px;
+}
+
+.profile-bio {
+  color: var(--text-2);
+  font-size: 15px;
+  line-height: 1.65;
+  margin-bottom: 20px;
+  white-space: pre-wrap;
+}
+
+.profile-bio-empty {
+  font-style: italic;
+}
+
+.profile-stats {
+  display: flex;
+  gap: 24px;
+  padding: 20px 0;
+  border-top: 1px solid var(--border-soft);
+  border-bottom: 1px solid var(--border-soft);
+  margin-bottom: 28px;
+}
+
+.profile-stats dt {
+  color: var(--text-3);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 4px;
+}
+
+.profile-stats dd {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.profile-posts-title {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.profile-editor {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 20px 0;
+  padding: 20px;
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  border: 1px solid var(--border-soft);
+}
+
+.profile-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.profile-field label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-2);
+}
+
+.profile-input,
+.profile-textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text-1);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.profile-textarea {
+  resize: vertical;
+  min-height: 96px;
+}
+
+.profile-input:focus,
+.profile-textarea:focus {
+  outline: none;
+  border-color: var(--violet-soft);
+  box-shadow: 0 0 0 3px var(--violet-glow);
+}
+
+.profile-editor-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}

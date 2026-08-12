@@ -44,7 +44,8 @@ This project is in early, active development. The table below is the honest pict
 | Uniswap swap (mainnet) | Built |
 | Uniswap swap (testnet) | Blocked: no official deployment |
 | Token detail pages | Planned |
-| Social feed and following | Planned |
+| Social feed and following | Built (Supabase + wallet signatures) |
+| Trader profiles | Built (view, edit, posts, follow stats) |
 | Copy trading | Planned |
 | Verified trader leaderboard | Planned |
 
