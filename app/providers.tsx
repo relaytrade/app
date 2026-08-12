@@ -4,6 +4,7 @@ import { useState } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { RainbowKitProvider, darkTheme } from "@rainbow-me/rainbowkit";
 import { WagmiProvider } from "wagmi";
+import { robinhoodChainTestnet } from "@/lib/chains";
 import { wagmiConfig } from "@/lib/wagmi";
 import "@rainbow-me/rainbowkit/styles.css";
 
@@ -32,6 +33,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
     <WagmiProvider config={wagmiConfig}>
       <QueryClientProvider client={queryClient}>
         <RainbowKitProvider
+          initialChain={robinhoodChainTestnet}
           theme={darkTheme({
             accentColor: "#7c5cfc",
             accentColorForeground: "#ffffff",
