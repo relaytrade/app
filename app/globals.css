@@ -1,0 +1,252 @@
+/*
+ * Relay design tokens
+ *
+ * These values are ported directly from the product's design prototype,
+ * so this file is the single source of truth for the brand's visual
+ * language: surfaces, brand colors, gain/loss colors, text hierarchy,
+ * and the radius scale used across every component.
+ *
+ * We're using plain CSS with custom properties instead of Tailwind. That's
+ * a deliberate call for this stage of the project. The prototype already
+ * defines an exact token system, and porting it into a utility framework
+ * means translating every value into a theme config and then re-checking
+ * the whole UI for drift. Copying the tokens as-is guarantees visual
+ * parity on day one. Tailwind (or any other approach) can be layered in
+ * later once the component library has settled and the cost of a
+ * migration is easier to justify.
+ */
+
+:root {
+  /* Surfaces, darkest to lightest */
+  --ink: #0a0d14;
+  --surface: #12151f;
+  --surface-2: #181c29;
+  --surface-3: #222739;
+  --border: #272c3d;
+  --border-soft: #1e2231;
+
+  /* Brand colors. Violet is primary, ember is the secondary accent used
+     for warmth and social/human touches, gold is reserved for highlights. */
+  --violet: #7c5cfc;
+  --violet-soft: #3a2e6e;
+  --violet-glow: rgba(124, 92, 252, 0.35);
+  --ember: #ff6b4a;
+  --gold: #f5c453;
+
+  /* Gain/loss colors. Used consistently for PnL, price deltas, and any
+     up/down indicator so a color always means the same thing everywhere. */
+  --mint: #35d399;
+  --rose: #ff5470;
+
+  /* Text hierarchy: primary, secondary, tertiary */
+  --text-1: #f5f6fa;
+  --text-2: #9ba1b7;
+  --text-3: #5e6478;
+
+  /* Radius scale, reused across cards, buttons, and inputs */
+  --radius-lg: 20px;
+  --radius-md: 14px;
+  --radius-sm: 9px;
+
+  /*
+   * Font variables. The actual values are injected by next/font in
+   * layout.tsx via className on <body>, which sets these to the resolved
+   * font-family strings (plus fallbacks) at build time. Declaring them
+   * here too keeps this file self-documenting: anyone reading globals.css
+   * in isolation can see exactly which role each variable plays without
+   * needing to cross-reference layout.tsx.
+   */
+  --font-display: var(--font-display), sans-serif;
+  --font-body: var(--font-body), sans-serif;
+  --font-mono: var(--font-mono), monospace;
+}
+
+/* ---------------------------------------------------------------------
+   Reset
+   A minimal reset, not a full normalize. We only zero out the properties
+   that actually cause layout surprises (margin, padding, box-sizing) and
+   leave everything else at browser defaults.
+   --------------------------------------------------------------------- */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  background: var(--ink);
+  color: var(--text-1);
+  font-family: var(--font-body);
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--violet-glow);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--surface-3);
+  border-radius: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: var(--font-body);
+  cursor: pointer;
+}
+
+/* Utility classes for gain/loss text and tabular figures. Any component
+   rendering a price or a percentage should reach for .mono, not restate
+   the font-family inline. */
+.mono {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+.up {
+  color: var(--mint);
+}
+.down {
+  color: var(--rose);
+}
+
+/* ---------------------------------------------------------------------
+   Signal mark
+   The recurring brand motif: a beacon dot with two expanding rings. It
+   appears static in the logo lockup and animated (see the ring keyframe
+   below) anywhere the product needs to indicate something is live, such
+   as an active trade or a real-time price update.
+   --------------------------------------------------------------------- */
+
+.signal-mark {
+  position: relative;
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+}
+.signal-mark .dot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--violet);
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 10px var(--violet-glow);
+}
+.signal-mark .ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border: 1.5px solid var(--violet);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  animation: signal-ping 2.4s cubic-bezier(0.2, 0.6, 0.3, 1) infinite;
+}
+.signal-mark .ring.r1 {
+  width: 14px;
+  height: 14px;
+  animation-delay: 0s;
+}
+.signal-mark .ring.r2 {
+  width: 22px;
+  height: 22px;
+  /* Offset so the two rings don't pulse in lockstep, which reads as a
+     single ring rather than an expanding signal. */
+  animation-delay: 0.6s;
+}
+@keyframes signal-ping {
+  0% {
+    opacity: 0.9;
+    transform: translate(-50%, -50%) scale(0.5);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.5);
+  }
+}
+
+/* ---------------------------------------------------------------------
+   Buttons
+   Base class plus variant modifiers. white-space: nowrap is intentional:
+   buttons that wrap their label onto two lines lose the pill shape and
+   read as a layout bug, so we'd rather a button overflow its container
+   slightly than wrap.
+   --------------------------------------------------------------------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 100px;
+  font-weight: 600;
+  font-size: 14.5px;
+  border: 1px solid transparent;
+  padding: 14px 26px;
+  transition:
+    transform 0.12s ease,
+    filter 0.12s ease,
+    background 0.15s ease;
+  white-space: nowrap;
+}
+.btn:active {
+  transform: scale(0.98);
+}
+.btn-primary {
+  background: var(--violet);
+  color: #fff;
+}
+.btn-primary:hover {
+  filter: brightness(1.1);
+}
+.btn-ghost {
+  background: transparent;
+  border-color: var(--border);
+  color: var(--text-1);
+}
+.btn-ghost:hover {
+  border-color: var(--text-3);
+}
+.btn-danger {
+  background: transparent;
+  border-color: rgba(255, 84, 112, 0.5);
+  color: var(--rose);
+}
+.btn-block {
+  width: 100%;
+}
+.btn-sm {
+  padding: 9px 16px;
+  font-size: 13px;
+}
+
+/* Reusable brand lockup: signal mark plus wordmark, used anywhere the
+   logo needs to appear (nav, onboarding, empty states). */
+.brand-lockup {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.brand-lockup span {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: 0.01em;
+}
