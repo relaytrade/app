@@ -15,23 +15,26 @@
  * settles on, not copy this pattern.
  */
 import { ConnectWallet } from "@/components/ConnectWallet";
+import { WalletAuthGate } from "@/components/WalletAuthGate";
 
 export default function Home() {
   return (
-    <main
-      style={{
-        minHeight: "100vh",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        gap: "28px",
-        padding: "24px",
-        textAlign: "center",
-        background:
-          "radial-gradient(120% 100% at 50% 0%, rgba(124,92,252,0.16), transparent 55%), var(--ink)",
-      }}
-    >
+    <>
+      <WalletAuthGate mode="require-guest" />
+      <main
+        style={{
+          minHeight: "100vh",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: "28px",
+          padding: "24px",
+          textAlign: "center",
+          background:
+            "radial-gradient(120% 100% at 50% 0%, rgba(124,92,252,0.16), transparent 55%), var(--ink)",
+        }}
+      >
       <div className="brand-lockup">
         <div className="signal-mark">
           <div className="ring r1" />
@@ -69,7 +72,8 @@ export default function Home() {
         </p>
       </div>
 
-      <ConnectWallet />
-    </main>
+        <ConnectWallet />
+      </main>
+    </>
   );
 }
