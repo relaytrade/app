@@ -1,6 +1,7 @@
 import { ConnectWallet } from "@/components/ConnectWallet";
 import { WalletAuthGate } from "@/components/WalletAuthGate";
 import { HomeWelcome } from "@/components/HomeWelcome";
+import { SwapWidget } from "@/components/SwapWidget";
 
 export default function HomePage() {
   return (
@@ -39,6 +40,8 @@ export default function HomePage() {
           }}
         >
           <HomeWelcome />
+
+          <SwapWidget />
 
           <section
             style={{

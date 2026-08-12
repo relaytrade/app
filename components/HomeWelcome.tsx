@@ -46,8 +46,8 @@ export function HomeWelcome() {
           marginTop: 12,
         }}
       >
-        Robinhood Chain testnet. Follow verified traders and copy trades from
-        here once the feed ships.
+        Robinhood Chain mainnet. Swap ETH, WETH, and USDG through the verified
+        Uniswap v3 router when pools have liquidity.
       </p>
     </div>
   );

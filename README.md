@@ -40,10 +40,17 @@ This project is in early, active development. The table below is the honest pict
 |---|---|
 | Design system and brand tokens | Ported |
 | Wallet connect | Built |
-| Token detail pages and swap | Planned |
+| ETH/WETH wrap and unwrap (mainnet) | Built |
+| Uniswap swap (mainnet) | Built |
+| Uniswap swap (testnet) | Blocked: no official deployment |
+| Token detail pages | Planned |
 | Social feed and following | Planned |
 | Copy trading | Planned |
 | Verified trader leaderboard | Planned |
+
+**Mainnet swap addresses** live in `lib/uniswap.ts` and `lib/tokens.ts`, sourced from [Uniswap's Robinhood Chain deployment page](https://developers.uniswap.org/docs/protocols/v3/deployments/v3-robinhood-chain-deployments) and [Robinhood token contracts](https://docs.robinhood.com/chain/contracts/). Swaps route through SwapRouter02 with QuoterV2 quotes across the 0.05%, 0.3%, and 1% fee tiers.
+
+**Testnet (46630):** Uniswap still publishes no deployment for Robinhood testnet. The app shows a chain switch prompt instead of substituting mainnet addresses. See git history on README for the full investigation.
 
 A note on dependencies: `npm audit` currently reports vulnerabilities that trace back to transitive packages inside the wallet connector ecosystem (MetaMask SDK, WalletConnect, Coinbase SDK), several layers below anything this project controls directly. They are not fixable without a breaking downgrade of wagmi that would reintroduce a version conflict with RainbowKit. This is being tracked, not ignored, and will be revisited as upstream packages catch up.
 

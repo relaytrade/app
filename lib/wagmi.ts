@@ -35,8 +35,8 @@ function getWalletConnectProjectId(): string {
  * supports, which is just the two Robinhood Chain networks for now.
  *
  * Both networks are listed so a user can be on either without the app
- * breaking, but see providers.tsx for where we default new connections
- * to testnet.
+ * breaking. providers.tsx defaults new connections to mainnet because
+ * Uniswap is only deployed there today.
  */
 export const wagmiConfig = getDefaultConfig({
   appName: "Relay",
