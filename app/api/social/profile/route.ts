@@ -47,14 +47,12 @@ export async function GET(request: Request) {
     return NextResponse.json({ error: profileError.message }, { status: 500 });
   }
 
-  if (!profileRow) {
-    profileRow = {
-      wallet_address: profileAddress,
-      display_name: truncateAddress(profileAddress),
-      bio: null,
-      created_at: new Date().toISOString(),
-    };
-  }
+  const profileBase = profileRow ?? {
+    wallet_address: profileAddress,
+    display_name: truncateAddress(profileAddress),
+    bio: null,
+    created_at: new Date().toISOString(),
+  };
 
   const [
     { count: followerCount, error: followerError },
@@ -110,7 +108,7 @@ export async function GET(request: Request) {
   }
 
   const profile: ProfileDetail = {
-    ...profileRow,
+    ...profileBase,
     follower_count: followerCount ?? 0,
     following_count: followingCount ?? 0,
     post_count: postCount ?? 0,
